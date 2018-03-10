@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Welcome, to join EnzoSquad please enter your information!</h1>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				{% if category == "incomplete" or category == "complete" %}
+					<p class="{{ category }}">{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form action="/process" method="POST">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "first_name_error" %}
+						<p class="{{ category }}">{{ message }}</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		First Name: <input type="text" name="first_name"></br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "last_name_error" %}
+						<p class="{{ category }}">{{ message }}</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		Last Name: <input type="text" name="last_name"></br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "email_error" %}
+						<p class="{{ category }}">{{ message }}</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		Email: <input type="text" name="email"></br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "password_error" %}
+						<p class="{{ category }}">{{ message }}</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		Password: <input type="password" name="password"></br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "password_error_two" %}
+						<p class="{{ category }}">{{ message }}</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		Confirm Password: <input type="password" name="confirm_password"></br>
+		<input type="submit" value="Join">
+	</form>
+	<form action="/logout" method="POST">
+		<input type="submit" value="Logout">
+	</form>
+</body>
+</html>
